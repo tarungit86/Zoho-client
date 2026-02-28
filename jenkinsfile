@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo "Checking out code..."
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo "Build started"
+                sh 'echo Hello DevOps'
+                sh 'date'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo "Running test stage"
+                sh 'ls -l'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Pipeline executed successfully!"
+        }
+        failure {
+            echo "Pipeline failed!"
+        }
+    }
+}
